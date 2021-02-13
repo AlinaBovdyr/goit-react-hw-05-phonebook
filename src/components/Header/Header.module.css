@@ -5,13 +5,13 @@
   margin-bottom: 10px;
 }
 
-.wrapper-title {
+.title {
   font-weight: 800;
   color: #3e155d;
   text-transform: uppercase;
 }
 
-.add-btn {
+.addBtn {
   width: 38px;
   height: 38px;
 }

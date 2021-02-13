@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
-import s from './Modal.module.css';
+import { CSSTransition } from 'react-transition-group';
 import { ReactComponent as CloseIcon } from '../../../icons/cross.svg';
 import IconButton from '../IconButton';
+import s from './Modal.module.css';
+import './ContentAppear.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -34,7 +36,8 @@ export default class Modal extends Component {
   render() {
     return createPortal(
       <div className={s.backdrop} onClick={this.handleBackdropClick}>
-        <div className={s.content}>
+        <CSSTransition in={true} appear={true} timeout={250} classNames="content" unmountOnExit>
+          <div className={s.content}>
           {this.props.children}
           <IconButton
             className={s.closeBtn}
@@ -45,6 +48,7 @@ export default class Modal extends Component {
             <CloseIcon width="12" height="12" fill="#fff" />
           </IconButton>
         </div>
+        </CSSTransition>
       </div>,
       modalRoot,
     );

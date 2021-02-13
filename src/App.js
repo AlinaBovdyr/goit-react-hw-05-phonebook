@@ -1,15 +1,19 @@
 import React, { PureComponent } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
-import { ReactComponent as AddIcon } from './icons/plus.svg';
 
 import Container from './components/Container';
+import Header from './components/Header';
 import ContactForm from './components/ContactForm';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
 import Sorter from './components/Sorter';
-import IconButton from './components/UI/IconButton';
 import Modal from './components/UI/Modal/Modal';
-import './App.css';
+import Notice from './components/Notice';
+import './Fade.css';
+import './ModalAppear.css';
+import './NoticeAppear.css';
+import './ContactListAppear.css';
 
 class App extends PureComponent {
   state = {
@@ -22,6 +26,8 @@ class App extends PureComponent {
     filter: '',
     sortBy: 'id',
     showModal: false,
+    error: false,
+    text: ''
   };
 
   componentDidMount() {
@@ -53,7 +59,17 @@ class App extends PureComponent {
     };
 
     if (contacts.some(contact => contact.name === name)) {
-      return alert(`${name} is already in contacts`);
+      this.setState({
+        text: `${name} is already in contacts!`,
+        error: true,
+        showModal: false,
+      });
+
+      setTimeout(() => {
+        this.setState({ error: false, })
+      }, 2000);
+
+      return
     }
 
     this.setState(({ contacts }) => {
@@ -134,40 +150,61 @@ class App extends PureComponent {
   };
 
   render() {
-    const { filter, contacts, sortBy, showModal } = this.state;
+    const { filter, contacts, sortBy, showModal, error, text } = this.state;
     const visibleContacts = this.getVisibleContacts();
     const sortedContacts = this.getSortContacts(visibleContacts);
 
     return (
       <Container>
-        <div className="wrapper">
-          <h2 className="wrapper-title">Contacts</h2>
-          <IconButton
-            className="add-btn"
-            onClick={this.toggleModal}
-            aria-label="Add contact"
-            title="Add contact"
-          >
-            <AddIcon width="16" height="16" fill="#fff" />
-          </IconButton>
-        </div>
+        <Header onClick={this.toggleModal} />
+        
+        <CSSTransition
+          in={error}
+          unmountOnExit
+          classNames="notice"
+          timeout={250}
+        >
+          <Notice text={text} />
+        </CSSTransition>
+        
 
-        {showModal && (
+        <CSSTransition
+          in={showModal}
+          unmountOnExit
+          classNames="modal"
+          timeout={500}
+        >
           <Modal onClose={this.toggleModal}>
             <ContactForm onAddContact={this.addContact} />
           </Modal>
-        )}
+        </CSSTransition>
 
-        {contacts.length > 1 && (
-          <>
+        <CSSTransition
+          in={contacts.length > 1}
+          unmountOnExit
+          classNames="fade"
+          timeout={250}
+        >
+          <div>
             <Filter value={filter} onChangeFilter={this.changeFilter} />
             <Sorter value={sortBy} onRadioChange={this.handleRadioChange} />
-          </>
-        )}
-        <ContactList
+          </div>
+        </CSSTransition>
+        
+
+        <CSSTransition
+          in={true}
+          appear={true}
+          unmountOnExit
+          classNames="item-fade"
+          timeout={500}
+        >
+          <ContactList
           contacts={sortedContacts}
           onDeleteContact={this.deleteContact}
         />
+        </CSSTransition>
+        
       </Container>
     );
   }

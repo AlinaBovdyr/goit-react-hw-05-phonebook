@@ -2,21 +2,37 @@
 @value mainColor from colors;
 
 .container {
+  position: relative;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
 }
 
-.mainTitle {
+.titleWrapper {
   text-align: center;
   color: #fff;
   background-color: mainColor;
+}
+
+.mainTitle {
   letter-spacing: 0.2em;
   line-height: 2;
 }
 
 .childContainer {
   padding: 20px;
+  height: fit-content;
   border: 2px solid mainColor;
+}
+
+.appear {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.appearActive {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 500ms linear;
 }

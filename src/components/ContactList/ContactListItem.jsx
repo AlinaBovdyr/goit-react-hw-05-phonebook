@@ -9,11 +9,11 @@ function ContactListItem({ name, number, onDelete }) {
   const telNum = ['tel:', number].join('');
   return (
     <li className={s.contactItem}>
+      <span>{name}</span>
       <div className={s.contactWrapper}>
-        <span>
-          {name}: {number}
-        </span>
-        <a href={telNum}>
+      <div>
+        <span>{number}</span>
+        <a className={s.link} href={telNum}>
           <IconButton
             title="Call up"
             className={s.button}
@@ -23,6 +23,7 @@ function ContactListItem({ name, number, onDelete }) {
           </IconButton>
         </a>
       </div>
+        
       <IconButton
         title="Delete contact"
         onClick={onDelete}
@@ -30,6 +31,7 @@ function ContactListItem({ name, number, onDelete }) {
       >
         <DeleteIcon width="14" height="14" fill="#fff" />
       </IconButton>
+      </div>
     </li>
   );
 }
