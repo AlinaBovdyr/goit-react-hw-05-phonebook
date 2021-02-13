@@ -1,0 +1,58 @@
+@value colors: '../../styles/variables/colors.css';
+@value mainColor, bgColor, accentColor, activeBtnColor from colors;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.label {
+  margin-bottom: 5px;
+
+  font-size: 18px;
+  font-weight: 700;
+  color: mainColor;
+}
+
+.input {
+  padding: 10px;
+  border: 2px solid #8585859e;
+}
+
+.input:focus,
+.input:hover {
+  outline: none;
+  border: 2px solid accentColor;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  max-width: 150px;
+  align-self: center;
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  background-color: bgColor;
+  border: none;
+  border-radius: 4px;
+}
+
+.button:hover,
+.button:focus {
+  background-color: accentColor;
+}
+
+.button:active {
+  background-color: activeBtnColor;
+}

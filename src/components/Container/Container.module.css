@@ -1,0 +1,22 @@
+@value colors: '../../styles/variables/colors.css';
+@value mainColor from colors;
+
+.container {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+.mainTitle {
+  text-align: center;
+  color: #fff;
+  background-color: mainColor;
+  letter-spacing: 0.2em;
+  line-height: 2;
+}
+
+.childContainer {
+  padding: 20px;
+  border: 2px solid mainColor;
+}

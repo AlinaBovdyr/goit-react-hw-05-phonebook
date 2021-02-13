@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.wrapper-title {
+  font-weight: 800;
+  color: #3e155d;
+  text-transform: uppercase;
+}
+
+.add-btn {
+  width: 38px;
+  height: 38px;
+}

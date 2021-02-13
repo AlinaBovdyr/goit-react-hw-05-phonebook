@@ -1,0 +1,30 @@
+@value colors: '../../styles/variables/colors.css';
+@value secondaryColor from colors;
+
+.container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: secondaryColor;
+}
+
+.inputWrapper {
+  font-size: 18px;
+  font-weight: 600;
+  color: secondaryColor;
+}
+
+.label:nth-child(1) {
+  margin-right: 20px;
+}
+
+.input {
+  margin-right: 5px;
+}

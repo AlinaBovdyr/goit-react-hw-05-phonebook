@@ -1,0 +1,25 @@
+@value colors: '../../../styles/variables/colors.css';
+@value bgColor, accentColor, activeBtnColor from colors;
+
+.button {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid bgColor;
+  background-color: bgColor;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover,
+.button:focus {
+  background-color: accentColor;
+}
+
+.button:focus {
+  background-color: activeBtnColor;
+}
